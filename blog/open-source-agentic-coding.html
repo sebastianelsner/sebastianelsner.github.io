@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="On Open Source Agentic Coding · Sebastian Elsner" />
+        <title>On Open Source Agentic Coding · Sebastian Elsner</title>
+        <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <style>
+            .blog-post { max-width: 720px; }
+            .blog-post p { line-height: 1.8; margin-bottom: 1.25rem; }
+            .blog-post h1 { margin-bottom: 0.25rem; }
+            .blog-meta { color: #6c757d; margin-bottom: 2rem; font-size: 0.95rem; }
+            .blog-back { margin-bottom: 2rem; font-size: 0.9rem; }
+            .blog-tldr { border-left: 3px solid #337ab7; padding-left: 1rem; font-style: italic; margin-bottom: 2rem; color: #495057; }
+        </style>
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand" href="../index.html">
+                <span class="d-block d-lg-none">Sebastian Elsner</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../assets/img/profile.jpg" alt="Sebastian Elsner" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#music">Music</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#awards">Awards</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../blog/">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid p-0">
+            <section class="resume-section">
+                <div class="resume-section-content blog-post">
+                    <div class="blog-back"><a href="index.html">← Blog</a></div>
+                    <h1 class="mb-0">On Open Source <span class="text-primary">Agentic Coding</span></h1>
+                    <div class="blog-meta">April 19, 2026</div>
+
+                    <p class="blog-tldr"><strong>TL;DR:</strong> Open source is making giant leaps, but is still quite behind (no surprise, duh!).</p>
+
+                    <p>I have wanted to test a few new open-source models for agentic coding tasks on consumer-grade hardware for a while now. Why? Because, at some point in the future, you won't want to be locked in with the major players - they'll "own" all your accumulated work and knowledge. 'Own' in the sense that it won't be easy to escape their ecosystem (think Google) if you want to switch to a better inference provider, change employer or careers, etc.</p>
+
+                    <p>So, this Sunday afternoon, I ran the recently released Qwen 3.6 35B A3B on a Spark DGX - not exactly consumer grade, but close enough if you're an enthusiast. It works like a charm. Combined with OpenCode, it feels like using Claude Code with Sonnet or the "last summer edition" of Gemini CLI, except the number of tokens is unlimited - you can never have enough tokens!</p>
+
+                    <p>From real-world testing, Qwen 3.6 is nowhere near Opus or Codex, but it's a great local model. The MoE is fast, and it's better than the 3.5 version. I'm waiting for the 3.6 dense model to see if it performs as well as the 3.5 MoE vs dense model.</p>
+
+                    <p>I gave Codex (5.4, medium), Claude (4.6, Opus, medium) and Qwen (3.6, OpenCode) the same real-world, user-created ticket with a poor, half-hearted description of the desired feature. I know the software well and what the outcome should have been, so I let all three do their thing in plan mode. Encouragingly, they all asked similar questions, but their implementations could not have been more different. Qwen's implementation, funny enough, looked a lot like mine on a bad day 10 years ago. It 'hacked' GUI class instance functionality for business logic, where the GUI and logic were not cleanly separated, whereas the 'big brothers' did the refactoring all at once without asking. What none of them got right: they all directly called a method on an object in a separate thread from the main thread. While this is technically 'okay-ish' in Python/Qt most of the time, it should be avoided. So, which implementation am I keeping? I kind of identify with Qwen's a lot ;)</p>
+
+                    <p>I also used the model for questions and answers in OpenWebUI, and I'd say the quality and speed (on the DGX) are really OK for batch inference, local RAG or evaluation pipelines. However, the remaining gap is usually where agentic tasks break. Frontier still justifies its price in terms of reliability, but open source is catching up fast. For example, Simon Willison's Flamingo SVG test also shows this: Qwen 3.6 on his laptop outperformed Opus 4.7 visually. Combined with long context regressions of 4.7 (256K, 90–60), open-source models are handling workloads that frontier models are not particularly good at. However, you never know when even the Flamingo SVG test will be benchmaxxed to the limit...</p>
+                </div>
+            </section>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/scripts.js"></script>
+    </body>
+</html>
