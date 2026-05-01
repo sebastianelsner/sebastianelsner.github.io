@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Vibing with the unpopular kids · Sebastian Elsner" />
+        <title>Vibing with the unpopular kids · Sebastian Elsner</title>
+        <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <style>
+            .blog-post { max-width: 720px; }
+            .blog-post p { line-height: 1.8; margin-bottom: 1.25rem; }
+            .blog-post h1 { margin-bottom: 0.25rem; }
+            .blog-meta { color: #6c757d; margin-bottom: 2rem; font-size: 0.95rem; }
+            .blog-back { margin-bottom: 2rem; font-size: 0.9rem; }
+        </style>
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand" href="../index.html">
+                <span class="d-block d-lg-none">Sebastian Elsner</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../assets/img/profile.jpg" alt="Sebastian Elsner" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#music">Music</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#awards">Awards</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../blog/">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid p-0">
+            <section class="resume-section">
+                <div class="resume-section-content blog-post">
+                    <div class="blog-back"><a href="index.html">← Blog</a></div>
+                    <h1 class="mb-0">Vibing with the <span class="text-primary">unpopular kids</span></h1>
+                    <div class="blog-meta">April 26, 2026</div>
+
+                    <p><strong>TL;DR:</strong> AI coding agents reinforce and drift towards mainstream technologies because they perform best where training data and convention is densest. So, before using an AI coding agent in an unfamiliar ecosystem, get to know that ecosystem yourself. If you cannot tell whether the agent’s approach is idiomatic, it will confidently build the wrong thing faster than you can debug it.</p>
+
+                    <p>Have you ever tried using one of the GPTs with an (subjectively) unpopular technology? I normally move between Python, web technology and C++. But I had never really needed to use it on technology that was not "mainstream" until recently. But using XWiki at work, I wanted to create a new macro that takes a wiki video, subtitles and chapter attachments, and displays them nicely on the page with clickable timestamp links. It's not too complicated, you'd think - maybe 1–2 hours with Claude or Codex, you'd think. But actually, this turned out to be a relatively painful all-day experiment.</p>
+
+                    <p>I haven't used Java for about 18 years. To be honest, I don't miss it. Sometimes I dream of writing OpenGL apps or applets - for those who remember them - in Java. XWiki is written in Java. I also have no knowledge about the internals of XWiki. I just use it, and honestly, I don't want to become an "XWiki internals person". This was supposed to be a small production-side improvement, not a new specialization. Choose your battles!</p>
+
+                    <p>XWiki has a few "XWiki-native" technologies and conventions layered on top of Java: Velocity templates, Groovy scripting, its own XWiki syntax, XObjects/XClasses and XARs. Lots of X-es! Without the GPTs, I would never have considered taking this on as a side project, especially not with the goal of developing it beyond the prototype stage and deploying it in production. So, overall, I was at a big disadvantage compared to other Python/Web projects, where I have strong opinions about what constitutes good code. So I decided I didn't want to look at the code at all. I also couldn't really guide Claude on the best way to set up, code and structure things. But, yea, let's stay positive - we'll figure it out together as we go along!</p>
+
+                    <p>My plan was to throw a few example macros at Claude Code, tell it where the XWiki dev docs are - very good ones in retrospect - explain what I wanted, and it would just do the job. However, it turns out that even though Claude may outsmart me in plain Java quite a bit, it has little clue about XWiki internals, the aforementioned technologies, or developer best practices. It also did not seem too keen on looking any of that up on the internet, even when prompted.</p>
+
+                    <p>My first mistake was not setting up the development environment properly. I wanted to use XWiki in Docker and iterate quickly. But I did not understand the extension deployment model. Claude worked quite hard: uploading the extension via API, driving the UI through Playwright MCP, or injecting it directly into the Docker container with <code>docker cp</code>. All of these sounded plausible. None of them were the right workflow. It turns out that you should create a local Maven repository and install and update the macro from there. In other words: the model did not need more Java knowledge. It needed XWiki ecosystem knowledge. So did I. I should have just read the documentation.</p>
+
+                    <p>I had taken the time to create an extensive PRD for the task, so I expected it to be implemented correctly the first time, or at least after a few rounds of prompting - something I am used to with many trivial tasks, and even some not-so-trivial ones. But no. XWiki threw quite a few unexpected obstacles in our way, many of which I still do not understand. I just prompted the error back and prayed that internet search or model intelligence would provide a solution. The problem was not one single big blocker. It was death by ecosystem details.</p>
+
+                    <p>At one point I was so stuck on a problem with Claude that I basically started from the beginning. But this time I wanted to - excuse the language - get shit done. So I turned to "Get Shit Done" (GSD), a lightweight and powerful meta-prompting, context engineering and spec-driven development system. Obviously this was not the trivial task I thought it would be, so it just needed MORE PROMPTING and MORE TOKENS!</p>
+
+                    <p>This helped, and I think this was mostly due to the dedicated research phase that GSD does before implementation. Even though this phase is optional, you should never skip it when working on tasks in what I would describe as an "unpopular" fringe domain, such as XWiki macros.</p>
+
+                    <p>After all four phases, I had a working macro. I can't tell if it's good or secure code, but it does the job.</p>
+
+                    <p>I expected Claude to be better at "figuring out the missing knowledge", but it still prefers to guess rather than check. While this certainly can be improved with better instructions or model changes, it means vibing code with software that is relatively uncommon is hard.</p>
+
+                    <p>It may also mean that new programming paradigms, frameworks and idioms will be harder for AI tools to adopt until enough public examples exist. Humans can adopt a new framework over time by building taste, reading docs, joining communities and making mistakes. AI coding agents mostly follow the density of examples, documentation, Stack Overflow history, GitHub repos and convention. That creates a kind of ecosystem gravity.</p>
+
+                    <p>Maybe this makes it less likely that we will see future projects like React back in the days, which turned web dev upside down, emerge in quite the same way. Or at least, it may make the adoption curve weirder. The mainstream gets even easier. The fringe gets comparatively harder.</p>
+
+                    <p>Vibe coding is not yet for everyone, and it is definitely not equally effective everywhere. You need ecosystem understanding. In mainstream ecosystems, coding agents benefit from millions of examples and well-trodden conventions. In fringe ecosystems, they often lose the plot unless you provide the map.</p>
+
+                    <p>That does not make AI coding useless. It changes what expertise means. The valuable skill is no longer only writing code line by line. It is knowing the ecosystem, being competent in your profession, recognizing bad architecture, forcing the agent to research before it implements, and having enough taste to reject plausible nonsense.</p>
+
+                    <p>Just as having a camera does not make someone a photographer, a coding agent will not make someone a programmer. Professional photographers do not have an easy time in the market; the same will happen to programmers, and we will need to change our mindset since we have been in high demand for a long time.</p>
+
+                    <p>Ultimately, it will come down to competence, taste, experience. Photographers with "the eye" will still be in demand. So will programmers with "the eye".</p>
+
+                </div>
+            </section>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/scripts.js"></script>
+    </body>
+</html>
