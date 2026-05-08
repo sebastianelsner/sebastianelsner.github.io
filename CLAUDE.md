@@ -29,3 +29,14 @@ The CSS (`css/styles.css`) is the compiled output of the Start Bootstrap Resume 
 All pages (main and blog) share the same nav pattern. Blog pages use `../` relative paths for assets, CSS, and JS. The nav on blog pages links back to `../index.html#section` anchors rather than using `js-scroll-trigger` (that class only works on the single-page index).
 
 The `js/scripts.js` activates Bootstrap ScrollSpy on `#sideNav` and collapses the mobile navbar on link click - only relevant on `index.html`.
+
+## Analytics
+
+Every page includes the Umami tracking snippet just before `</head>`:
+
+```html
+<!-- Umami analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="73702148-36e0-4a0b-889e-6e1c29e062c0"></script>
+```
+
+There is no templating layer, so this snippet must be present on every new HTML page. Duplicating an existing blog post (per the workflow above) carries it over automatically; any page created from scratch must add it manually.
