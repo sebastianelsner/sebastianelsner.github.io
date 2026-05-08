@@ -85,14 +85,16 @@ def main() -> int:
     svg_tmp.write_text(svg)
 
     out = ASSETS / f"og-{slug}.png"
+    # Render at 2x (2400x1260) so platform downscalers have enough data
+    # to keep the mono text crisp after JPEG re-encoding.
     subprocess.run(
         [
             "inkscape",
             str(svg_tmp),
             "--export-type=png",
             f"--export-filename={out}",
-            "--export-width=1200",
-            "--export-height=630",
+            "--export-width=2400",
+            "--export-height=1260",
         ],
         check=True,
         stdout=subprocess.DEVNULL,
