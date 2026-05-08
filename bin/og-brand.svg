@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      .paper { fill: #f4efe6; }
+      .ink { fill: #1a1814; }
+      .ink-soft { fill: #4a463e; }
+      .ink-faint { fill: #736d62; }
+      .amber { fill: #b8732a; }
+      .name { font-family: 'JetBrains Mono', 'DejaVu Sans Mono', monospace; font-weight: 700; font-size: 108px; letter-spacing: -2.5px; }
+      .manifesto { font-family: 'JetBrains Mono', 'DejaVu Sans Mono', monospace; font-style: italic; font-weight: 500; font-size: 52px; letter-spacing: -0.5px; }
+      .pillars { font-family: 'JetBrains Mono', 'DejaVu Sans Mono', monospace; font-weight: 700; font-size: 30px; letter-spacing: 1.4px; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" class="paper"/>
+
+  <!-- top dashed rule, full width -->
+  <line x1="80" y1="80" x2="1120" y2="80" stroke="#d8cfb8" stroke-width="1" stroke-dasharray="2 4"/>
+
+  <!-- name -->
+  <text x="80" y="280" class="name ink">Sebastian Elsner<tspan class="amber" font-weight="400">_</tspan></text>
+
+  <!-- manifesto with amber prompt -->
+  <text x="80" y="380" class="manifesto ink-soft"><tspan class="amber" font-style="normal" font-weight="700">› </tspan>I automate the boring stuff.</text>
+
+  <!-- pillars at bottom -->
+  <text x="80" y="540" class="pillars ink"><tspan class="amber">##</tspan>  Software <tspan class="amber">·</tspan> VFX Pipelines <tspan class="amber">·</tspan> DevOps <tspan class="amber">·</tspan> ML</text>
+
+  <!-- bottom dashed rule -->
+  <line x1="80" y1="570" x2="1120" y2="570" stroke="#d8cfb8" stroke-width="1" stroke-dasharray="2 4"/>
+</svg>
